@@ -1,0 +1,13 @@
+{
+  "name": "parcel-js-swc-wasm",
+  "collaborators": [
+    "Devon Govett <devongovett@gmail.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "parcel_js_swc_wasm_bg.wasm",
+    "parcel_js_swc_wasm.js"
+  ],
+  "main": "parcel_js_swc_wasm.js",
+  "sideEffects": false
+}

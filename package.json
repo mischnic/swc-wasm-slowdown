@@ -8,6 +8,7 @@
     },
     "dependencies": {
         "@napi-rs/cli": "^2.0.0",
-        "env": "^0.0.2"
+        "env": "^0.0.2",
+        "parcel": "^2.0.1"
     }
 }

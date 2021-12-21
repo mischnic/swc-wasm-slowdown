@@ -2,3 +2,5 @@
 Cargo.lock
 wasm
 *.node
+dist/
+.parcel-cache/
