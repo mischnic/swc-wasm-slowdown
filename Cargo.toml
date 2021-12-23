@@ -8,7 +8,7 @@ crate-type = ["cdylib"]
 
 [dependencies]
 swc_common = {version = "0.15.1", features = ["tty-emitter", "sourcemap"]}
-swc_ecmascript = {version = "0.98.2", features = ["parser", "transforms", "module", "optimization", "react", "preset_env", "typescript", "utils", "visit", "codegen", "utils"]}
+swc_ecmascript = {version = "0.99.1", features = ["parser", "transforms", "module", "optimization", "react", "preset_env", "typescript", "utils", "visit", "codegen", "utils"]}
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 napi = {version = "1.7.10"}

@@ -1,4 +1,5 @@
 {
+    "license": "MIT",
     "scripts": {
         "build:napi": "napi build --platform --release",
         "build:wasm": "wasm-pack build --release --no-typescript --target nodejs --out-dir wasm",
@@ -10,7 +11,7 @@
     "dependencies": {
         "@babel/cli": "^7.16.0",
         "@babel/core": "^7.16.5",
-        "@napi-rs/cli": "^2.0.0",
+        "@napi-rs/cli": "^2.2.0",
         "env": "^0.0.2",
         "parcel": "^2.0.1"
     }

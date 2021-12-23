@@ -72,14 +72,14 @@ fn compile(src: &str) -> u32 {
             // );
             // let transform = &mut expr_simplifier();
             // let transform = &mut dead_branch_remover();
-            let transform = &mut chain!(expr_simplifier(Default::default()), dead_branch_remover());
-            let module = module.fold_with(transform);
-            let transform = &mut preset_env(
-                global_mark,
-                Some(&comments),
-                swc_ecmascript::preset_env::Config::default(),
-            );
-            let module = module.fold_with(transform);
+            // let transform = &mut chain!(expr_simplifier(Default::default()), dead_branch_remover());
+            // let module = module.fold_with(transform);
+            // let transform = &mut preset_env(
+            //     global_mark,
+            //     Some(&comments),
+            //     swc_ecmascript::preset_env::Config::default(),
+            // );
+            // let module = module.fold_with(transform);
             // module.visit_with(&mut Test {});
 
             let module = module.fold_with(&mut chain!(
