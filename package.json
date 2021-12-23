@@ -2,11 +2,14 @@
     "scripts": {
         "build:napi": "napi build --platform --release",
         "build:wasm": "wasm-pack build --release --no-typescript --target nodejs --out-dir wasm",
+        "test:babel": "node test/babel.js",
         "test:napi": "node test/napi.js",
         "test:wasm": "node test/wasm.js",
         "test:wasm2": "node --no-liftoff --no-wasm-tier-up test/wasm.js"
     },
     "dependencies": {
+        "@babel/cli": "^7.16.0",
+        "@babel/core": "^7.16.5",
         "@napi-rs/cli": "^2.0.0",
         "env": "^0.0.2",
         "parcel": "^2.0.1"

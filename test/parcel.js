@@ -1,9 +1,11 @@
 const mod = require("../wasm-parcel");
 
 let input = require("fs").readFileSync(
-  __dirname + "/../react.development.js",
+  __dirname + "/../react-dom.development.js",
   "utf8"
 );
+
+console.log(input.byteLength)
 
 let cfg = {
   filename: "abc",

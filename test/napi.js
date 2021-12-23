@@ -1,7 +1,7 @@
 const mod = require("../index.darwin-x64.node");
 
 let input = require("fs").readFileSync(
-  __dirname + "/../react.development.js",
+  __dirname + "/../react-dom.development.js",
   "utf8"
 );
 
