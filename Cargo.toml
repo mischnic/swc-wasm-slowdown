@@ -11,8 +11,8 @@ swc_common = {version = "0.15.1", features = ["tty-emitter", "sourcemap"]}
 swc_ecmascript = {version = "0.99.1", features = ["parser", "transforms", "module", "optimization", "react", "preset_env", "typescript", "utils", "visit", "codegen", "utils"]}
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
-napi = {version = "1.7.10"}
-napi-derive = "1"
+napi = {version = "2.0.2"}
+napi-derive = "2.0.2"
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
 js-sys = "0.3"
@@ -20,4 +20,4 @@ parking_lot_core = "=0.8.0"
 wasm-bindgen = "0.2"
 
 [target.'cfg(not(target_arch = "wasm32"))'.build-dependencies]
-napi-build = "1"
+napi-build = "1.2.1"

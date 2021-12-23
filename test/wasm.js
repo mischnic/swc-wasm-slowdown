@@ -1,8 +1,7 @@
 const mod = require("../wasm");
 
 let input = require("fs").readFileSync(
-  __dirname + "/../react-dom.development.js",
-  "utf8"
+  __dirname + "/../react-dom.development.js"
 );
 
 for (let i = 0; i < 10; i++) {

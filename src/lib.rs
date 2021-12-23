@@ -18,23 +18,15 @@ use swc_ecmascript::{
 // ----------------------------------------------------
 
 #[cfg(not(target_arch = "wasm32"))]
-use napi::{CallContext, JsNumber, JsObject, JsString};
+use napi::bindgen_prelude::Uint8Array;
 #[cfg(not(target_arch = "wasm32"))]
-use napi_derive::{js_function, module_exports};
+use napi_derive::napi;
 
 #[cfg(not(target_arch = "wasm32"))]
-#[js_function(1)]
-fn run(ctx: CallContext) -> napi::Result<JsNumber> {
-    let arg = ctx.get::<JsString>(0)?.into_utf8()?;
-    let res = compile(arg.as_str()?);
-    ctx.env.create_uint32(res)
-}
-
-#[cfg(not(target_arch = "wasm32"))]
-#[module_exports]
-fn init(mut exports: JsObject) -> napi::Result<()> {
-    exports.create_named_method("run", run)?;
-    Ok(())
+#[napi]
+fn run(code: Uint8Array) -> u32 {
+    let code = unsafe { std::str::from_utf8_unchecked(&code) };
+    compile(code)
 }
 
 // ----------------------------------------------------
@@ -44,8 +36,9 @@ use wasm_bindgen::prelude::*;
 
 #[cfg(target_arch = "wasm32")]
 #[wasm_bindgen]
-pub fn run(src: &str) -> u32 {
-    compile(src)
+pub fn run(code: &[u8]) -> u32 {
+    let code = unsafe { std::str::from_utf8_unchecked(&code) };
+    compile(code)
 }
 
 // ----------------------------------------------------
