@@ -24,9 +24,9 @@ use napi_derive::napi;
 
 #[cfg(not(target_arch = "wasm32"))]
 #[napi]
-fn run(code: Uint8Array) -> u32 {
+fn run(code: Uint8Array, env: bool) -> u32 {
     let code = unsafe { std::str::from_utf8_unchecked(&code) };
-    compile(code)
+    compile(code, env)
 }
 
 // ----------------------------------------------------
@@ -36,14 +36,14 @@ use wasm_bindgen::prelude::*;
 
 #[cfg(target_arch = "wasm32")]
 #[wasm_bindgen]
-pub fn run(code: &[u8]) -> u32 {
+pub fn run(code: &[u8], env: bool) -> u32 {
     let code = unsafe { std::str::from_utf8_unchecked(&code) };
-    compile(code)
+    compile(code, env)
 }
 
 // ----------------------------------------------------
 
-fn compile(src: &str) -> u32 {
+fn compile(src: &str, env: bool) -> u32 {
     // let src = include_str!("../react.development.js");
     let cm = Lrc::<SourceMap>::default();
     let (module, comments) = parse(src, "test.js", &cm).unwrap();
@@ -67,12 +67,16 @@ fn compile(src: &str) -> u32 {
             // let transform = &mut dead_branch_remover();
             // let transform = &mut chain!(expr_simplifier(Default::default()), dead_branch_remover());
             // let module = module.fold_with(transform);
-            // let transform = &mut preset_env(
-            //     global_mark,
-            //     Some(&comments),
-            //     swc_ecmascript::preset_env::Config::default(),
-            // );
-            // let module = module.fold_with(transform);
+            let module = if env {
+                let transform = &mut preset_env(
+                    global_mark,
+                    Some(&comments),
+                    swc_ecmascript::preset_env::Config::default(),
+                );
+                module.fold_with(transform)
+            } else {
+                module
+            };
             // module.visit_with(&mut Test {});
 
             let module = module.fold_with(&mut chain!(
